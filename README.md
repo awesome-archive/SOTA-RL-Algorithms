@@ -3,16 +3,16 @@
 
 **PyTorch** and **Tensorflow 2.0** implementation of state-of-the-art model-free reinforcement learning algorithms on both Openai gym environments and a self-implemented Reacher environment. 
 
-Algorithms include **Soft Actor-Critic (SAC), Twin Delayed DDPG (TD3), Actor-Critic (AC/A2C), Proximal Policy Optimization (PPO), QT-Opt (including Cross-entropy (CE) Method)**, **PointNet**, **Transporter**, etc.
+Algorithms include **Soft Actor-Critic (SAC), Deep Deterministic Policy Gradient (DDPG), Twin Delayed DDPG (TD3), Actor-Critic (AC/A2C), Proximal Policy Optimization (PPO), QT-Opt (including Cross-entropy (CE) Method)**, **PointNet**, **Transporter**, **Recurrent Policy Gradient**, etc.
 
 This repo only contains **PyTorch** Implementation.
 
-[Here](https://github.com/tensorlayer/tensorlayer/tree/reinforcement-learning/examples/reinforcement_learning) is my **Tensorflow 2.0 + Tensorlayer 2.0** implementation. 
+[**Here**](https://github.com/tensorlayer/tensorlayer/tree/reinforcement-learning/examples/reinforcement_learning) is my **Tensorflow 2.0 + Tensorlayer 2.0** implementation as tutorials with simple structures. And [**here**](https://github.com/tensorlayer/RLzoo) is a baseline implementation with high-level API supporting a variety of popular environments, also with Tensorflow 2.0 + Tensorlayer 2.0.
 
 ## Contents:
 
 * Two versions of **Soft Actor-Critic (SAC)** are implemented.
-  
+
   **SAC Version 1**:
 
      `sac.py`: using state-value function.
@@ -25,6 +25,10 @@ This repo only contains **PyTorch** Implementation.
 
     paper: https://arxiv.org/pdf/1812.05905.pdf
 
+* **Deep Deterministic Policy Gradient (DDPG)**:
+
+  `ddpg.py`: implementation of DDPG.
+
 * **Twin Delayed DDPG (TD3)**:
 
    `td3.py`: implementation of TD3.
@@ -33,6 +37,7 @@ This repo only contains **PyTorch** Implementation.
 
 * **Proximal Policy Optimization (PPO)**:
   Todo
+
 * **Actor-Critic (AC) / A2C**:
 
   `ac.py`: extensible AC/A2C, easy to change to be DDPG, etc.
@@ -41,15 +46,42 @@ This repo only contains **PyTorch** Implementation.
 
 * Two versions of **QT-Opt** are implemented [here](https://github.com/quantumiracle/QT_Opt).
 
-* **PointNet** for landmarks generation from images with unsupervised learning is implemented [here](https://github.com/quantumiracle/PointNet_Landmarks_from_Image/tree/master). This method is also used for image-based reinforcement learning as a STOA algorithm, called **Transporter**.
+* **PointNet** for landmarks generation from images with unsupervised learning is implemented [here](https://github.com/quantumiracle/PointNet_Landmarks_from_Image/tree/master). This method is also used for image-based reinforcement learning as a SOTA algorithm, called **Transporter**.
 
   original paper: [Unsupervised Learning of Object Landmarksthrough Conditional Image Generation](https://papers.nips.cc/paper/7657-unsupervised-learning-of-object-landmarks-through-conditional-image-generation.pdf)
-  
+
   paper for RL: [Unsupervised Learning of Object Keypointsfor Perception and Control](https://arxiv.org/pdf/1906.11883.pdf)
 
+* **Recurrent Policy Gradient**:
+
+  `rdpg.py`: DDPG with LSTM policy.
+
+  `td3_lstm.py`: TD3 with LSTM policy.
+
+  `sac_v2_lstm.py`: SAC with LSTM policy.
+
+  References:
+
+  [Memory-based control with recurrent neural networks](https://arxiv.org/abs/1512.04455)
+
+  [Sim-to-Real Transfer of Robotic Control with Dynamics Randomization](https://arxiv.org/abs/1710.06537)
+  
+ * **Maximum a Posteriori Policy Optimisation (MPO)**:
+ 
+    todo
+
+    paper: [Maximum a Posteriori Policy Optimisation](https://arxiv.org/abs/1806.06920)
+ 
+ * **Advantage-Weighted Regression (AWR)**:
+
+    todo 
+
+    paper: [Advantage-Weighted Regression: Simple and Scalable Off-Policy Reinforcement Learning](https://arxiv.org/pdf/1910.00177.pdf)
 
 ## Usage:
-`python ***.py`
+`python ***.py --train` 
+
+`python ***.py --test` 
 
 ## Troubleshooting:
 

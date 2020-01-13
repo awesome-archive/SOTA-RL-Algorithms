@@ -207,7 +207,7 @@ class PolicyNetwork(nn.Module):
         z      = normal.sample().to(device)
         action = self.action_range* torch.tanh(mean + std*z)
         
-        action = self.action_range*mean.detach().cpu().numpy()[0] if deterministic else action.detach().cpu().numpy()[0]
+        action = self.action_range*torch.tanh(mean).detach().cpu().numpy()[0] if deterministic else action.detach().cpu().numpy()[0]
         return action
 
 
@@ -390,7 +390,6 @@ def worker(id, sac_trainer, ENV, rewards_queue, replay_buffer, max_episodes, max
             episode_reward += reward
             frame_idx += 1
             
-            
             # if len(replay_buffer) > batch_size:
             if replay_buffer.get_length() > batch_size:
                 for i in range(update_itr):
@@ -430,9 +429,6 @@ def plot(rewards):
     plt.savefig('sac_v2_multi.png')
     # plt.show()
     plt.clf()
-
-
-
 
 
 if __name__ == '__main__':

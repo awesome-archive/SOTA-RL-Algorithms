@@ -201,7 +201,7 @@ class PolicyNetwork(nn.Module):
         z      = normal.sample().to(device)
         action = self.action_range* torch.tanh(mean + std*z)
         
-        action = self.action_range*mean.detach().cpu().numpy()[0] if deterministic else action.detach().cpu().numpy()[0]
+        action = self.action_range*torch.tanh(mean).detach().cpu().numpy()[0] if deterministic else action.detach().cpu().numpy()[0]
         return action
 
 
@@ -330,7 +330,6 @@ def worker(id, ):  # thread could read global variables
     '''
     the function for sampling with multi-threading
     '''
-
     print(sac_trainer, replay_buffer)
     if ENV == 'Reacher':
         env=Reacher(screen_size=SCREEN_SIZE, num_joints=NUM_JOINTS, link_lengths = LINK_LENGTH, \
